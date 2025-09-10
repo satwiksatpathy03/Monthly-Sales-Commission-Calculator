@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Sales Commission Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Monthly Sales Commission Calculator</h1>
+            <p>Track performance and calculate commissions with visual insights</p>
+        </div>
+
+        <div class="main-content">
+            <div class="input-section">
+                <h2>Add Employee Data</h2>
+                <form id="employeeForm">
+                    <div class="form-group">
+                        <label for="employeeName">Employee Name</label>
+                        <input type="text" id="employeeName" placeholder="Enter employee name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="salesAmount">Sales Amount (₹)</label>
+                        <input type="number" id="salesAmount" placeholder="Enter sales amount" min="0" required>
+                    </div>
+                    <button type="submit" class="btn">Add Employee</button>
+                    <button type="button" class="btn btn-danger" onclick="clearAllData()">Clear All Data</button>
+                </form>
+
+                <div class="commission-rules">
+                    <h3>Commission Rules</h3>
+                    <p><strong>10% commission</strong> if sales > ₹50,000</p>
+                    <p><strong>0% commission</strong> if sales ≤ ₹50,000</p>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalEmployees">0</div>
+                        <div class="stat-label">Total Employees</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalSales">₹0</div>
+                        <div class="stat-label">Total Sales</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalCommission">₹0</div>
+                        <div class="stat-label">Total Commission</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="qualifiedEmployees">0</div>
+                        <div class="stat-label">Qualified for Commission</div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Employee Performance Report</h3>
+                    </div>
+                    <div style="overflow-x: auto;">
+                        <table id="employeeTable">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Employee Name</th>
+                                    <th>Sales Amount (₹)</th>
+                                    <th>Commission (₹)</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="empty-state">
+                                    <td colspan="5">No employee data available. Add employees to see the report.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-title">Sales vs Commission Comparison</div>
+                    <canvas id="performanceChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
